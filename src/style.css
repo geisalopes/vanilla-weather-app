@@ -15,15 +15,9 @@ body {
 }
 
 .cloudy {
-  width: 58px;
-  height: 58px;
+  width: 70px;
+  height: 70px;
   margin-top: 10px;
-}
-
-.sun {
-  width: 38px;
-  height: 38px;
-  margin: 15px 0;
 }
 
 .col-3 {
@@ -47,6 +41,24 @@ body {
 .form-control {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   width: 100%;
+}
+
+.icons {
+  color: rgba(39, 33, 66, 0.4);
+  font-size: 0.6rem;
+  margin: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.icon {
+  color: #37cacf;
+}
+
+.sun {
+  width: 38px;
+  height: 38px;
+  margin: 15px 0;
 }
 
 .temperature-container {
@@ -161,18 +173,6 @@ li {
   position: relative;
   line-height: 1;
   top: -34px;
-}
-
-.icons {
-  color: rgba(39, 33, 66, 0.4);
-  font-size: 0.6rem;
-  margin: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-}
-
-.icon {
-  color: #37cacf;
 }
 
 .weather footer {
