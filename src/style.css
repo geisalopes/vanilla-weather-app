@@ -1,3 +1,8 @@
+a:-webkit-any-link {
+  color: #272142;
+  text-decoration: none;
+}
+
 body {
   background: radial-gradient(
     circle at 10% 20%,
@@ -6,6 +11,10 @@ body {
   );
   display: block;
   margin: 0;
+}
+
+footer {
+  display: block;
 }
 
 .app {
@@ -48,7 +57,6 @@ body {
   font-size: 0.6rem;
   margin: 10px 20px;
   text-align: center;
-  text-decoration: none;
 }
 
 .icon {
@@ -63,6 +71,12 @@ body {
 
 .temperature-container {
   margin-top: 30px;
+}
+
+.units {
+  position: relative;
+  top: -40px;
+  font-size: 23px;
 }
 
 .weather {
@@ -181,10 +195,6 @@ li {
   line-height: 18px;
   text-align: center;
   color: rgba(39, 33, 66, 0.4);
-}
-
-footer {
-  display: block;
 }
 
 .weather footer a {
