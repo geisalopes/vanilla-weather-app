@@ -14,6 +14,12 @@ body {
   max-width: 800px;
 }
 
+.cloudy {
+  width: 80px;
+  height: 80px;
+  margin-top: 5px;
+}
+
 .col-3 {
   flex: 0 0 auto;
   width: 25%;
