@@ -158,6 +158,7 @@ footer {
 li {
   display: list-item;
   text-align: -webkit-match-parent;
+  text-transform: capitalize;
 }
 .weather li strong {
   color: #37cacf;
