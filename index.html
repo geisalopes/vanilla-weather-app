@@ -37,12 +37,15 @@
             <div class="weatherInfo">
               <div class="row">
                 <div class="col-6">
-                  <h1>London</h1>
+                  <h1 id="city"></h1>
                   <ul>
-                    <li><span>Wednesday 14:48</span>, few clouds</li>
                     <li>
-                      Humidity <strong>89%</strong>, Wind:
-                      <strong>2.57 km/h</strong>
+                      <span>Wednesday 14:48</span>,
+                      <span id="description">few clouds</span>
+                    </li>
+                    <li>
+                      Humidity: <strong><span id="humidity"></span>%</strong>,
+                      Wind: <strong><span id="wind"></span> km/h</strong>
                     </li>
                   </ul>
                 </div>
@@ -50,7 +53,7 @@
                   <div class="temperature-container d-flex justify-content-end">
                     <img src="img/cloudy.png" alt="cloud" class="cloudy" />
                     <div>
-                      <span class="temperature" id="temperature">16</span>
+                      <span class="temperature" id="temperature"></span>
                       <span class="units"
                         ><a href="#" id="celsius-link">°C</a> |
                         <a href="#" id="fahrenheit-link">°F</a></span
