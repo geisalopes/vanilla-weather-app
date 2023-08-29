@@ -50,3 +50,13 @@ function showCurrentDate(date) {
 let dateElement = document.querySelector("#date");
 let currentDate = new Date();
 dateElement.innerHTML = showCurrentDate(currentDate);
+
+// Adicionar pesquisa ao form
+
+function search(event) {
+  event.preventDefault();
+  
+}
+
+let enterNameCity = document.querySelector("#search-form");
+enterNameCity.addEventListener("submit", search);
