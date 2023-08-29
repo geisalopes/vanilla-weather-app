@@ -11,13 +11,13 @@ function displayTemperature(response) {
   humidityElement.innerHTML = response.data.temperature.humidity;
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = response.data.wind.speed;
-  console.log(response.data);
+  // console.log(response.data);
 }
 
 let apiKey = "bf12f0ob06f7acf048dt44a41aadd939";
 let apiUrl = `https://api.shecodes.io/weather/v1/current?query=Sapucaia do Sul&key=${apiKey}&units=metric`;
 
-console.log(apiUrl);
+// console.log(apiUrl);
 axios.get(apiUrl).then(displayTemperature);
 
 // Definir dia e hora atual
@@ -55,7 +55,15 @@ dateElement.innerHTML = showCurrentDate(currentDate);
 
 function search(event) {
   event.preventDefault();
-  
+  let cityInputElement = document.querySelector("#search-input");
+  let city = cityInputElement.value;
+  searchCity(city);
+}
+
+function searchCity(city) {
+  let apiKey = "bf12f0ob06f7acf048dt44a41aadd939";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
 }
 
 let enterNameCity = document.querySelector("#search-form");
