@@ -1,8 +1,14 @@
 // Definir temperatura atual, bem como cidade, vento e umidade
 
+let apiKey = "bf12f0ob06f7acf048dt44a41aadd939";
+let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+
+axios.get(apiUrl).then(displayTemperature);
+
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
+  celsiusTemperature = response.data.temperature.current;
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.city;
   let descriptionElement = document.querySelector("#description");
@@ -11,16 +17,13 @@ function displayTemperature(response) {
   humidityElement.innerHTML = response.data.temperature.humidity;
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = response.data.wind.speed;
-  // console.log(response.data);
 }
 
-let apiKey = "bf12f0ob06f7acf048dt44a41aadd939";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=Sapucaia do Sul&key=${apiKey}&units=metric`;
-
-// console.log(apiUrl);
-axios.get(apiUrl).then(displayTemperature);
-
 // Definir dia e hora atual
+
+let dateElement = document.querySelector("#date");
+let currentDate = new Date();
+dateElement.innerHTML = showCurrentDate(currentDate);
 
 function showCurrentDate(date) {
   let hours = date.getHours();
@@ -47,24 +50,57 @@ function showCurrentDate(date) {
   return `${day} ${hours}:${minutes}`;
 }
 
-let dateElement = document.querySelector("#date");
-let currentDate = new Date();
-dateElement.innerHTML = showCurrentDate(currentDate);
-
 // Adicionar pesquisa ao form
 
-function search(event) {
+let enterNameCity = document.querySelector("#search-form");
+enterNameCity.addEventListener("submit", handleSubmit);
+
+function handleSubmit(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#search-input");
-  let city = cityInputElement.value;
-  searchCity(city);
+  search(cityInputElement.value);
 }
 
-function searchCity(city) {
+function search(city) {
   let apiKey = "bf12f0ob06f7acf048dt44a41aadd939";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
 }
 
-let enterNameCity = document.querySelector("#search-form");
-enterNameCity.addEventListener("submit", search);
+// Converter temperature para celsius e fahrenheit
+
+let celsiusTemperature = null;
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", convertToFahrenheit);
+
+function convertToFahrenheit(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  fahrenheitLink.classList.remove("noactive");
+  fahrenheitLink.classList.add("active");
+  celsiusLink.classList.add("noactive");
+
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", convertToCelsius);
+
+function convertToCelsius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  celsiusLink.classList.remove("noactive");
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.add("noactive");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+// function convertToCelsius(event) {
+//   event.preventDefault();
+//   let temperatureElement = document.querySelector("#temperature");
+//   temperatureElement.innerHTML = 17;
+// }
+
+search("Berlin");

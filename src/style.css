@@ -1,6 +1,14 @@
 a:-webkit-any-link {
-  color: #272142;
   text-decoration: none;
+  cursor: default;
+}
+
+.active {
+  color: black;
+}
+
+.noactive {
+  color: #81d4fa;
 }
 
 body {
