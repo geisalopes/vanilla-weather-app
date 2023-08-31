@@ -3,11 +3,11 @@ a:-webkit-any-link {
   cursor: default;
 }
 
-.active {
-  color: black;
+.black {
+  color: black !important;
 }
 
-.noactive {
+.cyan {
   color: #81d4fa;
 }
 

@@ -31,12 +31,13 @@ function showCurrentDate(date) {
 
 // Set current temperature, city, wind and humidity and description
 
+let celsiusTemperature = 0;
+
 function displayTemperature(response) {
-  console.log(response.data); 
+  celsiusTemperature = response.data.main.temp;
   document.querySelector("#city").innerHTML = response.data.name;
-  document.querySelector("#temperature").innerHTML = Math.round(
-    response.data.main.temp
-  );
+  document.querySelector("#temperature").innerHTML =
+    Math.round(celsiusTemperature);
   document.querySelector("#description").innerHTML =
     response.data.weather[0].main;
 
@@ -65,31 +66,25 @@ function handleSubmit(event) {
 
 // Convert temperature to celsius and fahrenheit
 
-let celsiusTemperature = null;
-
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
 function convertToFahrenheit(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
-  fahrenheitLink.classList.remove("noactive");
-  fahrenheitLink.classList.add("active");
-  celsiusLink.classList.add("noactive");
-
+  fahrenheitLink.classList.add("black");
+  celsiusLink.classList.remove("black");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
-
 function convertToCelsius(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
-  celsiusLink.classList.remove("noactive");
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.add("noactive");
+  celsiusLink.classList.add("black");
+  fahrenheitLink.classList.remove("black");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
