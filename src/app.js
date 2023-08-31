@@ -6,8 +6,8 @@ dateElement.innerHTML = showCurrentDate(currentDate);
 
 function showCurrentDate(date) {
   let hours = date.getHours();
+  hours = `0${hours}`;
   if (hours < 10) {
-    hours = `0${hours}`;
   }
 
   let minutes = date.getMinutes();
@@ -32,6 +32,7 @@ function showCurrentDate(date) {
 // Set current temperature, city, wind and humidity and description
 
 function displayTemperature(response) {
+  console.log(response.data); 
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#temperature").innerHTML = Math.round(
     response.data.main.temp
@@ -43,12 +44,6 @@ function displayTemperature(response) {
     response.data.wind.speed
   );
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-
-  // PAREI AQUI EM 30/08 TAVA TENTANDO MUDAR O ÍCONE DAS NUVENS CONFORME MUDA O TEMPO
-  // let mainImage = "#mainImage";
-  // if ("#description" === "Clouds") {
-  //   mainImage.innerHTML = img / scattered - clouds - day.png;
-  // }
 }
 
 function search(city) {
