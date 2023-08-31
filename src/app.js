@@ -1,25 +1,4 @@
-// Definir temperatura atual, bem como cidade, vento e umidade
-
-let apiKey = "bf12f0ob06f7acf048dt44a41aadd939";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-
-axios.get(apiUrl).then(displayTemperature);
-
-function displayTemperature(response) {
-  let temperatureElement = document.querySelector("#temperature");
-  celsiusTemperature = response.data.temperature.current;
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-  let cityElement = document.querySelector("#city");
-  cityElement.innerHTML = response.data.city;
-  let descriptionElement = document.querySelector("#description");
-  descriptionElement.innerHTML = response.data.condition.description;
-  let humidityElement = document.querySelector("#humidity");
-  humidityElement.innerHTML = response.data.temperature.humidity;
-  let windElement = document.querySelector("#wind");
-  windElement.innerHTML = response.data.wind.speed;
-}
-
-// Definir dia e hora atual
+// Set current day and time
 
 let dateElement = document.querySelector("#date");
 let currentDate = new Date();
@@ -50,7 +29,35 @@ function showCurrentDate(date) {
   return `${day} ${hours}:${minutes}`;
 }
 
-// Adicionar pesquisa ao form
+// Set current temperature, city, wind and humidity and description
+
+function displayTemperature(response) {
+  document.querySelector("#city").innerHTML = response.data.name;
+  document.querySelector("#temperature").innerHTML = Math.round(
+    response.data.main.temp
+  );
+  document.querySelector("#description").innerHTML =
+    response.data.weather[0].main;
+
+  document.querySelector("#wind").innerHTML = Math.round(
+    response.data.wind.speed
+  );
+  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+
+  // PAREI AQUI EM 30/08 TAVA TENTANDO MUDAR O ÍCONE DAS NUVENS CONFORME MUDA O TEMPO
+  // let mainImage = "#mainImage";
+  // if ("#description" === "Clouds") {
+  //   mainImage.innerHTML = img / scattered - clouds - day.png;
+  // }
+}
+
+function search(city) {
+  let apiKey = "9d85a623d5f54fa249d3910c26ca0525";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+// Add search to form
 
 let enterNameCity = document.querySelector("#search-form");
 enterNameCity.addEventListener("submit", handleSubmit);
@@ -61,13 +68,7 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
-function search(city) {
-  let apiKey = "bf12f0ob06f7acf048dt44a41aadd939";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayTemperature);
-}
-
-// Converter temperature para celsius e fahrenheit
+// Convert temperature to celsius and fahrenheit
 
 let celsiusTemperature = null;
 
@@ -96,11 +97,5 @@ function convertToCelsius(event) {
   fahrenheitLink.classList.add("noactive");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
-
-// function convertToCelsius(event) {
-//   event.preventDefault();
-//   let temperatureElement = document.querySelector("#temperature");
-//   temperatureElement.innerHTML = 17;
-// }
 
 search("Berlin");
