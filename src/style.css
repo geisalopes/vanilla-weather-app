@@ -31,10 +31,9 @@ footer {
   max-width: 800px;
 }
 
-.cloudy {
-  width: 70px;
-  height: 70px;
-  margin-top: 10px;
+.weatherIcon {
+  width: 100px;
+  height: 100px;
 }
 
 .col-3 {
@@ -176,9 +175,8 @@ li {
 .weather .temperature {
   font-weight: bold;
   color: rgb(33, 33, 33);
-  margin-left: 5px;
   font-weight: 400;
-  margin-left: 10px;
+  margin-left: 5px;
   font-weight: bold;
   font-size: 80px;
   line-height: 1;
