@@ -41,7 +41,7 @@
                   <h1 id="city"></h1>
                   <ul>
                     <li>
-                      <span id="date">Wednesday 14:48</span>,
+                      <span id="date"></span>,
                       <span id="description"></span>
                     </li>
                     <li>
@@ -51,9 +51,12 @@
                   </ul>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-8">
-                  <div class="temperature-container d-flex justify-content-end">
+                  <div
+                    class="d-flex justify-content-end weather-temp"
+                    id="icon"
+                  >
                     <img
-                      src="img/broken-clouds-day.png"
+                      src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png"
                       alt="weather-icon"
                       class="weatherIcon"
                       id="weatherIcon"
@@ -72,8 +75,8 @@
                 </div>
               </div>
             </div>
-            <div class="weatherForecast row">
-              <div class="col">
+            <div class="weatherForecast row" id="forecast">
+              <!-- <div class="col" id="forecast">
                 <div class="weatherForecastPreview">
                   <div class="forecast-time">Wed</div>
                   <img src="img/sun.png" alt="sun" class="sun" />
@@ -127,7 +130,7 @@
                     <span class="forecast-temperature-min">16°</span>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
             <div>
               <footer>
