@@ -15,20 +15,21 @@ function showCurrentDate(date) {
     minutes = `0${minutes}`;
   }
 
-  return `${hours}:${minutes}`;
-  // let dayIndex = date.getDay();
-  // let days = [
-  //   "Sunday",
-  //   "Monday",
-  //   "Tuesday",
-  //   "Wednesday",
-  //   "Thursday",
-  //   "Friday",
-  //   "Saturday",
-  // ];
-  // let day = days[dayIndex];
-  // return `${day} ${hours}:${minutes}`;
+  let dayIndex = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[dayIndex];
+  return `${day} ${hours}:${minutes}`;
 }
+
+// Set forecast
 
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
@@ -37,8 +38,6 @@ function formatDay(timestamp) {
 
   return days[day];
 }
-
-// Set forecast
 
 function displayForecast(response) {
   let forecast = response.data.daily;
@@ -53,9 +52,10 @@ function displayForecast(response) {
         forecastHTML +
         `<div class="col-2">
       <div class="forecast-time">${formatDay(forecastDay.time)}</div>
-        <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
-        alt="" 
-        width="42"
+        <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+          forecastDay.condition.icon
+        }.png"
+        width="50"
         />
       <div class="forecast-temperature">
         <span class="forecast-temperature-max">${Math.round(
@@ -89,7 +89,7 @@ function displayTemperature(response) {
   let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
-  // let iconElement = document.querySelector("#icon");
+  let iconElement = document.querySelector("#weatherIcon");
 
   celsiusTemperature = response.data.temperature.current;
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
@@ -97,7 +97,10 @@ function displayTemperature(response) {
   descriptionElement.innerHTML = response.data.condition.description;
   humidityElement.innerHTML = response.data.temperature.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
-  // iconElement.innerHTML = response.data.condition.icon_url;
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
 
   getForecast(response.data.coordinates);
 }
