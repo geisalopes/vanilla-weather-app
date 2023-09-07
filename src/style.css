@@ -5,10 +5,12 @@ a:-webkit-any-link {
 
 .black {
   color: black !important;
+  text-decoration: none;
 }
 
 .cyan {
   color: #81d4fa;
+  text-decoration: none;
 }
 
 body {
