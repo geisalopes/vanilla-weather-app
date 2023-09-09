@@ -91,6 +91,9 @@ function displayTemperature(response) {
   let windElement = document.querySelector("#wind");
   let iconElement = document.querySelector("#weatherIcon");
 
+  celsiusLink.classList.add("black");
+  fahrenheitLink.classList.remove("black");
+
   celsiusTemperature = response.data.temperature.current;
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
   cityElement.innerHTML = response.data.city;
@@ -138,6 +141,7 @@ function convertToFahrenheit(event) {
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
+
 function convertToCelsius(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
